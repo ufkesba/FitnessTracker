@@ -1,10 +1,11 @@
 import React, {PureComponent} from 'react';
 import  { Container, Header, Left, 
           Body, Right, Button, Icon, 
-          Title, Grid, Row, Text,
-          FooterTab, Footer, Root 
+          Title, Text,
+          FooterTab, Footer
         } from 'native-base';
-import { StyleSheet, ProgressViewIOS, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
+import Routes from './components/Routes'
 
 
 
@@ -30,35 +31,9 @@ export default class App extends PureComponent<{}, State> {
             </Button>
           </Right>
         </Header>
-        <Grid style={styles.grid} >
-          <Row style={{height: "10%", alignItems: "center", justifyContent: "center"}}>
-            <Button style={styles.profNameContainer}>
-              <Text style={styles.title}>
-                Brent the Beast
-              </Text>
-            </Button>
-          </Row>
-          <Row style={{height: "50%", alignItems: "center", justifyContent: "center"}}>
-            <Button transparent style={styles.iconButton}>
-              <Image source={require('./assets/IMG_3409.jpg')} style={styles.icon}>
-              </Image>
-            </Button>
-          </Row>    
-          <Row style={{height:"5%", alignItems: "center", justifyContent: "center"}}>
-            <ProgressViewIOS  style={styles.progress}progress={.7}>
-            </ProgressViewIOS>
-          </Row>      
-          <Row style={{height:"5%", alignItems: "center", justifyContent: "center"}}>
-            <Text style={styles.container}>XP NEEDED: {4500}</Text>
-          </Row>
-          <Row style={{height:"15%", alignItems: "center", justifyContent: "center"}}>
-            <Button style={styles.profNameContainer}>
-              <Text style={styles.title}>
-                Gain This Grain!
-              </Text>
-            </Button>
-          </Row>
-        </Grid>
+        
+        <Routes />
+
         <Footer>
           <FooterTab>
             <Button vertical>
