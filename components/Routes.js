@@ -1,85 +1,85 @@
-import React from 'react';
-import  { Button,Grid, Row, Text,
-        } from 'native-base';
-import { StyleSheet, ProgressViewIOS, Image } from 'react-native';
+import React, {Component} from 'react';
+import  { Button, Text, Container, Footer, Icon, FooterTab} from 'native-base';
+import { StyleSheet } from 'react-native';
+import SocialPage from './SocialPage.js'
+import HomePage from './HomePage.js'
+import SettingsPage from './SettingsPage.js';
+import StatsPage from './StatsPage.js';
 
-export class Routes extends React.Component {
+export default class Routes extends Component {
+  constructor(props) {
+     super(props)
+     this.state = {index: 0,
+                   homeActive:true,
+                   socialActive:false,
+                   statsActive:false,
+                   settingsActive:false}; // default screen index
+  }
+
+  switchScreen(index) {
+     this.setState({index: index});
+  }
+
   render() {
+    
+    let MainContent = null;
+    let homeActive=true, socialActive=false, statsActive=false, settingsActive=false;
+
+    if (this.state.index == 0) {
+      MainContent = HomePage;
+      homeActive=true, socialActive=false, statsActive=false, settingsActive=false;
+    } else if (this.state.index == 1) {
+      MainContent = SocialPage;
+      homeActive=false, socialActive=true, statsActive=false, settingsActive=false;
+    } else if (this.state.index == 2) {
+      MainContent = StatsPage;
+      homeActive=false, socialActive=false, statsActive=true, settingsActive=false;
+    } else if (this.state.index == 3) {
+      MainContent = SettingsPage;
+      homeActive=false, socialActive=false, statsActive=false, settingsActive=true;
+    }
+
     return (
-        <Grid style={styles.grid} >
-        <Row style={{height: "10%", alignItems: "center", justifyContent: "center"}}>
-          <Button style={styles.profNameContainer}>
-            <Text style={styles.title}>
-              Brent the Beast
-            </Text>
-          </Button>
-        </Row>
-        <Row style={{height: "50%", alignItems: "center", justifyContent: "center"}}>
-          <Button transparent style={styles.iconButton}>
-            <Image source={require('../assets/IMG_3409.jpg')} style={styles.icon}>
-            </Image>
-          </Button>
-        </Row>    
-        <Row style={{height:"5%", alignItems: "center", justifyContent: "center"}}>
-          <ProgressViewIOS  style={styles.progress}progress={.7}>
-          </ProgressViewIOS>
-        </Row>      
-        <Row style={{height:"5%", alignItems: "center", justifyContent: "center"}}>
-          <Text style={styles.container}>XP NEEDED: {4500}</Text>
-        </Row>
-        <Row style={{height:"15%", alignItems: "center", justifyContent: "center"}}>
-          <Button style={styles.profNameContainer}>
-            <Text style={styles.title}>
-              Gain This Grain!
-            </Text>
-          </Button>
-        </Row>
-      </Grid>
-    );
+      <Container>
+        <MainContent style={styles.mainContent}/>
+        <Footer>
+          <FooterTab>
+            <Button vertical 
+              onPress={() => this.switchScreen(0)}
+              active={homeActive}>
+              <Icon name="apps" ios='ios-home' android="md-home"/>
+              <Text>Home</Text>
+            </Button>
+            <Button vertical 
+              onPress={() => this.switchScreen(1)}
+              active={socialActive}>
+              <Icon name="user-friends" ios='ios-person' android="md-person" />
+              <Text>Social</Text>
+            </Button>
+            <Button vertical 
+              onPress={() => this.switchScreen(2)}
+              active={statsActive}>
+              <Icon name="navigate" ios='ios-pulse' android="md-menu" />
+              <Text>Stats</Text>
+            </Button>
+            <Button vertical 
+              onPress={() => this.switchScreen(3)}
+              active={settingsActive}>
+              <Icon name="person" ios='ios-settings' android="md-settings" />
+              <Text>Settings</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
+    )
   }
 }
 
 const styles = StyleSheet.create({
-    grid: {
-      backgroundColor: '#d9d9d9',
-      flex: 1,
-      height: '100%'
-    },
-    profNameContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      alignSelf: 'center',
-      width: '75%',
-      height: '80%',
-      paddingTop: 10
-    },
-    progress: {
-      width: '80%',
-      height: '100%',
-      backgroundColor: '#00BCD4',
-      borderRadius:5,
-    },
-    iconButton: {
-      height: '100%', 
-      width: '100%',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    icon: {
-      height: '80%', 
-      width: '80%',
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-    },
-    Row: {
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-  });
-  
-
-export default Routes;
+  mainContent: {
+    height: '100%', 
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }
+});

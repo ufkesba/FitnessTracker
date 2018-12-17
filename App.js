@@ -31,30 +31,7 @@ export default class App extends PureComponent<{}, State> {
             </Button>
           </Right>
         </Header>
-        
         <Routes />
-
-        <Footer>
-          <FooterTab>
-            <Button vertical>
-              <Icon name="apps" ios='ios-home' android="md-home"/>
-              
-              <Text>Home</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="user-friends" ios='ios-person' android="md-person" />
-              <Text>Friends</Text>
-            </Button>
-            <Button vertical active>
-              <Icon active name="navigate" ios='ios-pulse' android="md-menu" />
-              <Text>Stats</Text>
-            </Button>
-            <Button vertical>
-              <Icon name="person" ios='ios-settings' android="md-settings" />
-              <Text>Settings</Text>
-            </Button>
-          </FooterTab>
-        </Footer>
       </Container>
     );
   }
