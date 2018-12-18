@@ -24,7 +24,7 @@ export default class Routes extends Component {
     
     let MainContent = null;
     let homeActive=true, socialActive=false, statsActive=false, settingsActive=false;
-
+    // console.log("test");
     if (this.state.index == 0) {
       MainContent = HomePage;
       homeActive=true, socialActive=false, statsActive=false, settingsActive=false;
